@@ -1,0 +1,21 @@
+.breadcrumb-navbar {
+  opacity: 0.85;
+  color: #fff;
+}
+
+ol.breadcrumb {
+  margin-bottom: 0;
+}
+
+.breadcrumb-item.active {
+  color: rgb(255, 255, 255, 0.8);
+}
+
+.breadcrumb-item > a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.breadcrumb-item > a:hover {
+  color: rgb(255, 255, 255, 0.8);
+}

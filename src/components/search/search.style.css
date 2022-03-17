@@ -1,0 +1,9 @@
+.float-right {
+  float: right !important;
+}
+
+@media (max-width: 767px) {
+  .hide-small-screen {
+    display: none;
+  }
+}

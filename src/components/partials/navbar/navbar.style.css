@@ -1,0 +1,17 @@
+@media only screen and (max-width: 410px) {
+  .navbar-logo {
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .navbar-logo {
+    height: 30px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .navbar-logo {
+    height: 25px;
+  }
+}

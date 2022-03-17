@@ -1,0 +1,26 @@
+{
+  "navbar": {
+    "search": "Search",
+    "members": "Members",
+    "dropdown": {
+      "account": "Account",
+      "user": "Hello",
+
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "pwreset": "Forgot you'r password?",
+
+      "profile": "Profile",
+      "signout": "Sign out"
+    }
+  },
+  "breadcrumb": {
+    "index": "Home",
+    "signin": {
+      "default": "Sign in",
+      "test": {
+        "default": "Test"
+      }
+    }
+  }
+}

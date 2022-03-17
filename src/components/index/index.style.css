@@ -1,0 +1,21 @@
+img.logo {
+  max-width: 60%;
+}
+
+.search-form {
+  display: block;
+  text-align: -webkit-center;
+  margin: 1rem 0;
+}
+
+.search-form > div.input-group {
+  max-width: 70%;
+}
+
+.search-form > div.input-group > select {
+  max-width: fit-content;
+}
+
+.search-form > button {
+  margin-top: 1rem;
+}
