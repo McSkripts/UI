@@ -16,10 +16,11 @@ function BreadcrumbView() {
   }
   let items : Array<Paths> = [];
 
+  const numRegex = /^\d+$/;
+
   let paths = location.pathname.split('/').slice(1);
   paths.forEach((p, i, arr) => {
-    //@ts-ignore
-    if(p != "" && isNaN(p)){
+    if(p != "" && !numRegex.test(p)){
       let tempUrlArr: Array<Url> = [];
 
       for (let i1 = 0; i1 < i; i1++) {
