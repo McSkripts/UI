@@ -9,6 +9,7 @@ import { AuthProviderFunc, AuthContext, useAuth } from "./methods/auth";
 
 import Navbar from './components/partials/navbar/navbar.view';
 import Breadcrumbs from './components/partials/breadcrumb/breadcrumb.view';
+import Footer from './components/partials/footer/footer.view';
 
 import Index from './components/index/index.view';
 import SignIn from './components/signin/signin.view';
@@ -104,6 +105,7 @@ function App(){
             }
           />
         </Routes>
+        <Footer />
       </AuthProvider>
     </BrowserRouter>
   );
