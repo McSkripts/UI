@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import { Puff } from 'react-loading-icons';
 import './members.style.css';
 
-//@ts-ignore
-function MemberView(list) {
-  if(!list.Users)
+import IUser from '../../../interfaces/user.interface';
+
+interface Args {
+  Users?: Array<IUser>
+}
+
+function MemberView(args? : Args) {
+  if(!args?.Users)
     return (
       <div className="text-center mt-5">
         <Puff stroke="#000" height="4rem" width="4rem" /><br />
@@ -15,8 +20,7 @@ function MemberView(list) {
 
   return (
     <Row>
-      {//@ts-ignore
-      list.Users && list.Users.map((user, index) => (
+      {args?.Users && args?.Users.map((user, index) => (
         <Col as={Link} to={`/member/${user.Id}`} sm={{ span: 6 }} md={{ span: 4 }} lg={{ span: 3 }} key={index} className="text-decoration-none">
           <Card body className="mb-3">
             {JSON.stringify(user)}
