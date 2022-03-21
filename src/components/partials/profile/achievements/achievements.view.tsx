@@ -10,13 +10,13 @@ function AchievementsView(){
 
   const [achievements, setAchievements] = useState(null);
   useEffect(() => {
-    /*axios.get(`http://localhost/user/@me/achievements`, {
+    axios.get(`http://localhost/user/@me/achievements`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }
     }).then((res) => {
-      //setAchievements(res.data);
-    });*/
+      setAchievements(res.data);
+    });
   }, []);
 
   if(!achievements)
