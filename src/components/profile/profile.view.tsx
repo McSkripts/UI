@@ -42,24 +42,32 @@ function ProfileView(){
         </Col>
         <Col lg={{ span: 9 }}>
           <Row>
-            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1">
-              <Alert variant="info">
-                Alert
+            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1 text-decoration-none" as={Link} to="/profile/purchases">
+              <Alert variant="info" className="alert-box">
+                <b>0</b>
+                <hr />
+                <p>Køb</p>
               </Alert> 
             </Col>
-            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1">
-              <Alert variant="success">
-                Alert
+            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1 text-decoration-none" as={Link} to="/profile/balance">
+              <Alert variant="success" className="alert-box">
+                <b>0</b>
+                <hr />
+                <p>Konto</p>
               </Alert> 
             </Col>
-            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1">
-              <Alert variant="danger">
-                Alert
+            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1 text-decoration-none" as={Link} to="/profile/products">
+              <Alert variant="danger" className="alert-box">
+                <b>0</b>
+                <hr />
+                <p>Produkter</p>
               </Alert> 
             </Col>
-            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1">
-              <Alert variant="warning">
-                Alert
+            <Col md={{ span: 6 }} lg={{ span: 3 }} className="mb-1 text-decoration-none" as={Link} to="/profile/coins">
+              <Alert variant="warning" className="alert-box">
+                <b>0</b>
+                <hr />
+                <p>Coins</p>
               </Alert> 
             </Col>
           </Row>

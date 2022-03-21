@@ -20,6 +20,7 @@ import Search from './components/search/search.view';
 import Members from './components/members/members.view';
 
 import Profile from './components/profile/profile.view';
+import Purchases from './components/profile/purchases/purchases.view';
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   let [token, setToken] = React.useState<any>(localStorage.getItem('token') || "{}");
@@ -101,6 +102,14 @@ function App(){
             element={
               <RequireAuth>
                 <Profile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile/purchases"
+            element={
+              <RequireAuth>
+                <Purchases />
               </RequireAuth>
             }
           />

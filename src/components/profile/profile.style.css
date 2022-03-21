@@ -2,3 +2,22 @@
   color: unset;
   background-color: unset;
 }
+
+.alert-box {
+  padding: 0.2rem 1rem 0.5rem;
+}
+
+.alert-box > b {
+  font-size: 255%;
+  line-height: 110%;
+  font-weight: unset;
+}
+
+.alert-box > hr {
+  margin: 0;
+}
+
+.alert-box > p {
+  text-align: right;
+  margin: 0;
+}
