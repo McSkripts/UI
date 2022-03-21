@@ -25,7 +25,7 @@ function BreadcrumbView() {
 
       for (let i1 = 0; i1 < i; i1++) {
         if(arr[i1] != "")
-        tempUrlArr.push(arr[i1])
+          tempUrlArr.push(arr[i1])
       }
       tempUrlArr.push(p || 'index');
 

@@ -6,9 +6,44 @@ import './search.style.css';
 
 import Products from '../partials/products/products.view';
 
+export interface IProducts {
+  Meta?: Array<{
+
+  }>;
+  Products?: Array<{
+    map(arg0: (product: any, index: any) => JSX.Element): import("react").ReactNode;
+    Id: Number;
+    Type: String;
+    Title: String;
+    Description: String;
+    Version: Array<{
+      Number: String;
+      Release: String;
+    }>;
+    Price: Array<{
+      Amount: String;
+      Currency: String;
+    }>;
+    Timestamp: Array<{
+      Upload: String;
+      Update: String;
+    }>;
+    Uri: String;
+    Meta: Array<{
+      Views: Number;
+      Downloads: Number;
+      Ratings: Array<{
+        Total: Number;
+        Stars: Number;
+      }>;
+    }>;
+    // Add user... maybe create some models
+  }>;
+}
+
 function SearchView() {
   let params = useParams();
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState<IProducts>({});
   useEffect(() => {
     document.title = 'McSkripts - 1000 forskellige scripts';
 
@@ -54,9 +89,8 @@ function SearchView() {
           <div className="hide-small-screen">AD</div>
         </Col>
         <Col md={{ span: 9 }}>
-          {//@ts-ignore
-          products.Meta && JSON.stringify(products.Meta)}
-          <Products {...products} />
+          {products?.Meta && JSON.stringify(products?.Meta)}
+          <Products Products={products?.Products} />
         </Col>
       </Row>
     </Container>

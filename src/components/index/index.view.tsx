@@ -43,7 +43,7 @@ function IndexView() {
         </InputGroup>
         <Button type="submit" variant="primary">Søg</Button>
       </form>
-      <Products {...products} />
+      <Products Products={[]} />
     </Container>
   );
 }
