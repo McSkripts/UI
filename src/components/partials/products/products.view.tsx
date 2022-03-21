@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { Puff } from 'react-loading-icons';
 import './products.style.css';
 
+import IProduct from '../../../interfaces/product.interface';
+
 interface Product {
-  Products?: Array<{
-    map(arg0: (product: any, index: any) => JSX.Element): import("react").ReactNode;
-    Id: Number;
-  }>
+  Products?: Array<IProduct>
 }
 
 function ProductView(args? : Product) {

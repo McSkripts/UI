@@ -6,39 +6,11 @@ import './search.style.css';
 
 import Products from '../partials/products/products.view';
 
-export interface IProducts {
-  Meta?: Array<{
+import IProduct from '../../interfaces/product.interface';
 
-  }>;
-  Products?: Array<{
-    map(arg0: (product: any, index: any) => JSX.Element): import("react").ReactNode;
-    Id: Number;
-    Type: String;
-    Title: String;
-    Description: String;
-    Version: Array<{
-      Number: String;
-      Release: String;
-    }>;
-    Price: Array<{
-      Amount: String;
-      Currency: String;
-    }>;
-    Timestamp: Array<{
-      Upload: String;
-      Update: String;
-    }>;
-    Uri: String;
-    Meta: Array<{
-      Views: Number;
-      Downloads: Number;
-      Ratings: Array<{
-        Total: Number;
-        Stars: Number;
-      }>;
-    }>;
-    // Add user... maybe create some models
-  }>;
+interface IProducts {
+  Meta?: Array<{}>;
+  Products?: Array<IProduct>;
 }
 
 function SearchView() {

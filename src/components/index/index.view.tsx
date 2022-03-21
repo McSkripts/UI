@@ -7,8 +7,14 @@ import './index.style.css';
 
 import Products from '../partials/products/products.view';
 
+import IProduct from '../../interfaces/product.interface';
+
+interface IProducts {
+  Products?: Array<IProduct>;
+}
+
 function IndexView() {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState<IProducts>({});
   useEffect(() => {
     document.title = 'McSkripts - 1000 forskellige scripts';
 
@@ -43,7 +49,7 @@ function IndexView() {
         </InputGroup>
         <Button type="submit" variant="primary">Søg</Button>
       </form>
-      <Products Products={[]} />
+      <Products Products={products?.Products} />
     </Container>
   );
 }
