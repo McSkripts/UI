@@ -3,25 +3,25 @@ export default interface Product {
   Type: String;
   Title: String;
   Description: String;
-  Version: Array<{
+  Version: {
     Number: String;
     Release: String;
-  }>;
-  Price: Array<{
-    Amount: String;
+  };
+  Price: {
+    Amount: Number;
     Currency: String;
-  }>;
-  Timestamp: Array<{
+  };
+  Timestamp: {
     Upload: String;
     Update: String;
-  }>;
+  };
   Uri?: String;
-  Meta?: Array<{
+  Meta?: {
     Views: Number;
     Downloads: Number;
-    Ratings: Array<{
+    Ratings: {
       Total: Number;
       Stars: Number;
-    }>;
-  }>;
+    };
+  };
 }

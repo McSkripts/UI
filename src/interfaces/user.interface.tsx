@@ -9,16 +9,16 @@ export default interface User {
   Description: String;
   Coins: Number;
   Xp: Number;
-  Balance: Array<{
+  Balance: {
     Amount: Number;
     Currency: String;
-  }>;
+  };
   Language: String;
-  Timestamp: Array<{
+  Timestamp: {
     LastActivity: String;
     SignIn: String;
     Creation: String;
-  }>;
+  };
   Avatar: Image;
   Banner: Image;
 }
