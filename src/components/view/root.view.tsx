@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { Puff } from 'react-loading-icons';
-import { Link } from "react-router-dom";
+import Loading from '../partials/loading.element';
 import axios from 'axios';
 
 import Script from './script.view';
@@ -22,12 +21,7 @@ function RootView() {
   }, []);
 
   if(!product)
-    return (
-      <div className="text-center mt-5">
-        <Puff stroke="#000" height="4rem" width="4rem" /><br />
-        Loading . . .
-      </div>
-    );
+    return <Loading />;
 
   return (
     <Container className="mt-3">

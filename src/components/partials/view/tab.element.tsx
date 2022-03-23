@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import { Puff } from 'react-loading-icons';
+import Loading from '../loading.element';
 
 import IProduct from '../../../interfaces/product.interface';
 
@@ -36,16 +36,10 @@ function TabElement(args : { Product: IProduct }) {
         {args.Product.Description}
       </Tab>
       <Tab eventKey="changelogs" title="Changelogs">
-        {!changelogLoaded && <div className="text-center mt-5">
-          <Puff stroke="#000" height="4rem" width="4rem" /><br />
-          Loading . . .
-        </div>}
+        {!changelogLoaded && <div className="mt-5"><Loading /></div>}
       </Tab>
       <Tab eventKey="discussion" title="Discussion">
-        {!discussionLoaded && <div className="text-center mt-5">
-          <Puff stroke="#000" height="4rem" width="4rem" /><br />
-          Loading . . .
-        </div>}
+        {!discussionLoaded && <div className="mt-5"><Loading /></div>}
       </Tab>
     </Tabs>
   )

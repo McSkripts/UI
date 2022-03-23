@@ -1,6 +1,6 @@
 import { ListGroup } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { Puff } from 'react-loading-icons';
+import Loading from '../loading.element';
 import './products.style.css';
 
 import IProduct from '../../../interfaces/product.interface';
@@ -11,12 +11,7 @@ interface Product {
 
 function ProductView(args? : Product) {
   if(!args?.Products)
-    return (
-      <div className="text-center mt-5">
-        <Puff stroke="#000" height="4rem" width="4rem" /><br />
-        Loading . . .
-      </div>
-    );
+    return <Loading />;
 
   return (
     <ListGroup>

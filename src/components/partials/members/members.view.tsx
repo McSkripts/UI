@@ -1,6 +1,6 @@
 import { Row, Col, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { Puff } from 'react-loading-icons';
+import Loading from '../loading.element';
 import './members.style.css';
 
 import IUser from '../../../interfaces/user.interface';
@@ -11,12 +11,7 @@ interface Args {
 
 function MemberView(args? : Args) {
   if(!args?.Users)
-    return (
-      <div className="text-center mt-5">
-        <Puff stroke="#000" height="4rem" width="4rem" /><br />
-        Loading . . .
-      </div>
-    );
+    return <Loading />;
 
   return (
     <Row>
