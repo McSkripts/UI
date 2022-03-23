@@ -16,6 +16,7 @@ import SignIn from './components/signin/signin.view';
 
 import SearchTypes from './components/search/types.view';
 import Search from './components/search/search.view';
+import View from './components/view/root.view';
 
 import Members from './components/members/members.view';
 
@@ -90,6 +91,8 @@ function App(){
           <Route path="/search/:type" element={<Search />} />
           <Route path="/search/:type/:page" element={<Search />} />
           <Route path="/search/:type/:query/:page" element={<Search />} />
+
+          <Route path="/view/:id" element={<View />} />
           {/*<Route path="/search/:type/:page(\d+)" element={<div>TYPE/PAGE</div>} />
           <Route path="/search/:type/:query(/[a-zA-Z0-9-_]+/g)?" element={<div>TYPE/QUERY/PAGE</div>} />
           <Route path="/search/:type/:query/:page" element={<div>TYPE/QUERY/PAGE</div>} />*/}
