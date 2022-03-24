@@ -75,7 +75,7 @@ function ProfileView(){
             <Col lg={{ span: 6 }} className="mb-3">
               <Card border="danger" className="mb-3">
                 <Card.Header>Daily rewards</Card.Header>
-                <Card.Body className="">
+                <Card.Body className="p-1">
                   <DailyRewards />
                 </Card.Body>
               </Card>
