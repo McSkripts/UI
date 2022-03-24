@@ -1,0 +1,26 @@
+.no-width {
+  width: 0;
+}
+
+.table-button {
+  padding: 0 0.2rem;
+  font-size: 95%;
+  white-space: nowrap;
+}
+
+.small-select {
+  max-width: fit-content;
+}
+
+.discount-button {
+  margin-top: 31px;
+}
+
+.react-tag-input {
+  border: 1px solid #ced4da;
+}
+
+.react-tag-input:empty {
+  background-color: #e9ecef;
+  opacity: 1;
+}

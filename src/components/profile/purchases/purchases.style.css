@@ -5,4 +5,5 @@
 .table-button {
   padding: 0 0.2rem;
   font-size: 95%;
+  white-space: nowrap;
 }

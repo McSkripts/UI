@@ -22,6 +22,9 @@ import Members from './components/members/members.view';
 
 import Profile from './components/profile/profile.view';
 import Purchases from './components/profile/purchases/purchases.view';
+import Products from './components/profile/products/products.view';
+import NewProduct from './components/profile/products/new/root.view';
+import PreviewProduct from './components/profile/products/preview.view';
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   let [token, setToken] = React.useState<any>(localStorage.getItem('token') || "{}");
@@ -113,6 +116,30 @@ function App(){
             element={
               <RequireAuth>
                 <Purchases />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile/products"
+            element={
+              <RequireAuth>
+                <Products />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile/product/new"
+            element={
+              <RequireAuth>
+                <NewProduct />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile/product/:id"
+            element={
+              <RequireAuth>
+                <PreviewProduct />
               </RequireAuth>
             }
           />

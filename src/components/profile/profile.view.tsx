@@ -79,12 +79,12 @@ function ProfileView(){
                   <DailyRewards />
                 </Card.Body>
               </Card>
-              <Card border="success">
+              {/*<Card border="success">
                 <Card.Header>Affiliates</Card.Header>
                 <Card.Body className="">
                   <Affiliates />
                 </Card.Body>
-              </Card>
+              </Card>*/}
             </Col>
             <Col lg={{ span: 6 }}>
               <Card border="info">
