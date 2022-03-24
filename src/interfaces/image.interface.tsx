@@ -1,8 +1,8 @@
 export default interface Image {
-  Id?: Number;
+  Id?: number;
   File: {
-    Name: String;
-    Type: String;
-    Location: String;
+    Name: string;
+    Type: string;
+    Location: string;
   };
 }

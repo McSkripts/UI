@@ -1,23 +1,23 @@
 import Image from './image.interface';
 
 export default interface User {
-  Id: Number;
-  Email: String;
-  FirstName: String;
-  LastName: String;
-  DisplayName: String;
-  Description: String;
-  Coins: Number;
-  Xp: Number;
+  Id: number;
+  Email: string;
+  FirstName: string;
+  LastName: string;
+  DisplayName: string;
+  Description: string;
+  Coins: number;
+  Xp: number;
   Balance: {
-    Amount: Number;
-    Currency: String;
+    Amount: number;
+    Currency: string;
   };
-  Language: String;
+  Language: string;
   Timestamp: {
-    LastActivity: String;
-    SignIn: String;
-    Creation: String;
+    LastActivity: string;
+    SignIn: string;
+    Creation: string;
   };
   Avatar: Image;
   Banner: Image;

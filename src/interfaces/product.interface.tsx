@@ -1,27 +1,27 @@
 export default interface Product {
-  Id: Number;
-  Type: String;
-  Title: String;
-  Description: String;
+  Id: number;
+  Type: string;
+  Title: string;
+  Description: string;
   Version: {
-    Number: String;
-    Release: String;
+    Number: string;
+    Release: string;
   };
   Price: {
-    Amount: Number;
-    Currency: String;
+    Amount: number;
+    Currency: string;
   };
   Timestamp: {
-    Upload: String;
-    Update: String;
+    Upload: string;
+    Update: string;
   };
-  Uri?: String;
+  Uri?: string;
   Meta?: {
-    Views: Number;
-    Downloads: Number;
+    Views: number;
+    Downloads: number;
     Ratings: {
-      Total: Number;
-      Stars: Number;
+      Total: number;
+      Stars: number;
     };
   };
 }
