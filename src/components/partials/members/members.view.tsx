@@ -11,7 +11,7 @@ interface Args {
 
 function MemberView(args? : Args) {
   if(!args?.Users)
-    return <Loading />;
+    return <Loading className="mt-2 h5" size={3} />;
 
   return (
     <Row>

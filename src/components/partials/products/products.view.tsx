@@ -11,12 +11,12 @@ interface Product {
 
 function ProductView(args? : Product) {
   if(!args?.Products)
-    return <Loading />;
+    return <Loading className="mt-2 h5" size={3} />;
 
   return (
     <ListGroup>
       {args?.Products && args?.Products.map((product, index) => (
-        <ListGroup.Item as={Link} to={`/view/${product?.Id}`} key={index}>{JSON.stringify(product)}</ListGroup.Item>
+        <ListGroup.Item as={Link} to={product?.Uri || `/view/${product?.Id}`} key={index}>{JSON.stringify(product)}</ListGroup.Item>
       ))}
     </ListGroup>
   )
