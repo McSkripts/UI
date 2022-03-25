@@ -1,7 +1,8 @@
-import { Container, Form, Row, Col, Modal, InputGroup, Button } from "react-bootstrap";
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
+import { Container, Alert, Form, Row, Col, Modal, InputGroup, Button } from "react-bootstrap";
+import { useState } from 'react';
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
+import { ThreeDots } from 'react-loading-icons';
 
 import { useAuth } from "../../../../methods/auth";
 
@@ -12,12 +13,16 @@ function PreviewProductView(){
   let auth = useAuth();
   let tokenObj = JSON.parse(auth.token);
 
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showFormattingModal, setShowFormattingModal] = useState<boolean>(false);
   const [fileInputs, setFileInputs] = useState<string[]>(['']);
   const [type, setType] = useState<string>('none');
   const [tags, setTags] = useState<string[]>([]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
+
     event.preventDefault();
 
     let formData = new FormData(event.currentTarget);
@@ -26,6 +31,7 @@ function PreviewProductView(){
     formData.delete(`file${fileI}`);
 
     //formData.append('keywords', tags);
+    formData.append('type', type);
 
     axios.post('http://localhost/products', formData, {
       headers: {
@@ -33,6 +39,10 @@ function PreviewProductView(){
       }
     }).then(() => {
 
+    }).catch(err => {
+      setLoading(false)
+      
+      setError(err.response.data);
     });
   }
 
@@ -69,6 +79,11 @@ function PreviewProductView(){
 
   return (
     <Container className="mt-3 mb-3">
+      {error && (<>
+        <Alert variant="danger" onClose={() => setError("")} dismissible>
+          {error}
+        </Alert>
+      </>)}
       <Form.Group>
         <Form.Label>Type</Form.Label>
         <Form.Select onChange={(e) => setType(e.target.value)} defaultValue={type}>
@@ -192,8 +207,8 @@ function PreviewProductView(){
         <Form.Group className="mb-3">
           <Form.Check type="checkbox" label="Check me out" disabled={type == 'none'} />
         </Form.Group>
-        <Button variant="primary" type="submit" disabled={type == 'none'}>
-          Submit
+        <Button variant="primary" type="submit" disabled={type == 'none' || loading}>
+          {loading ? <ThreeDots fill="#fff" width="2rem" /> : 'Submit'}
         </Button>
       </form>
     </Container>
