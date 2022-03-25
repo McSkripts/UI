@@ -28,7 +28,7 @@ function SignInView() {
       navigate(from || "/profile", { replace: true });
     }).catch(err => {
       setLoading(false);
-      setError(err);
+      setError(err.response.data);
     });
   }
 
