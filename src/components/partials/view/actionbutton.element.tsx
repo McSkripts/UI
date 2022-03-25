@@ -1,11 +1,10 @@
 import { Button } from 'react-bootstrap';
-import axios from 'axios';
 
 import IProduct from '../../../interfaces/product.interface';
 
 function ActionButton(args : { Id: IProduct["Id"], Price : IProduct["Price"] }) {
   const downloadProduct = () => {
-    axios.get(`http://localhost/product/${args.Id}/download`);
+    window.location.href = `http://localhost/product/${args.Id}/download`;
   }
 
   if(args.Price.Amount == 0)
