@@ -46,16 +46,12 @@ function RootView() {
     watchtime_focus = true;
   };
 
-  // User has switched away from the tab (AKA tab is hidden)
   const onBlur = () => {
     watchtime_focus = false;
   };
 
   if(!product)
     return <Loading className="mt-3" />;
-
-  // <i className="fa-solid fa-star"></i>
-  // <i className="fa-regular fa-star"}></i>
   
   return (
     <Container className="mt-3">
