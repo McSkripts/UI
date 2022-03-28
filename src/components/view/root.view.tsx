@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Rating } from 'react-simple-star-rating';
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import Loading from '../partials/loading.element';
 import axios from 'axios';
+import './view.style.css';
 
 import Script from './script.view';
 import Plugin from './plugin.view';
@@ -10,19 +12,51 @@ import Plugin from './plugin.view';
 import IProduct from '../../interfaces/product.interface';
 
 function RootView() {
+  const watchtime_start = new Date();
+  let watchtime_timer: NodeJS.Timer,
+   watchtime_focus: boolean = true,
+   watchtime: number = 0;
+
   let params = useParams();
-  const [product, setProduct] = useState<IProduct | undefined>(undefined);
+  const [product, setProduct] = useState<IProduct | undefined>();
   useEffect(() => {
     axios.get(`http://localhost/product/${params.id}`).then((res) => {
       setProduct(res.data);
       
       document.title = res.data.Title + ' - McSkripts';
     });
+
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("blur", onBlur);
+    watchtime_timer = setInterval(() => {
+      if(watchtime_focus)
+        watchtime++;
+    }, 100);
+    
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("blur", onBlur);
+      
+      console.log(watchtime_start.toISOString());
+      console.log(watchtime / 10);
+    }
   }, []);
 
-  if(!product)
-    return <Loading />;
+  const onFocus = () => {
+    watchtime_focus = true;
+  };
 
+  // User has switched away from the tab (AKA tab is hidden)
+  const onBlur = () => {
+    watchtime_focus = false;
+  };
+
+  if(!product)
+    return <Loading className="mt-3" />;
+
+  // <i className="fa-solid fa-star"></i>
+  // <i className="fa-regular fa-star"}></i>
+  
   return (
     <Container className="mt-3">
       {product?.Type == 'scripts' && <Script Product={product} />}
