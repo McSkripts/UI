@@ -68,6 +68,11 @@ function ProductsView(){
                 </OverlayTrigger>
               </th>
               <th className="no-width text-center">
+                <OverlayTrigger overlay={<Tooltip>Views</Tooltip>}>
+                  <i className="fa-solid fa-eye"></i>
+                </OverlayTrigger>
+              </th>
+              <th className="no-width text-center">
                 <OverlayTrigger overlay={<Tooltip>Downloads</Tooltip>}>
                   <i className="fa-solid fa-download"></i>
                 </OverlayTrigger>
@@ -77,22 +82,18 @@ function ProductsView(){
                   <i className="fa-solid fa-basket-shopping"></i>
                 </OverlayTrigger>
               </th>
-              <th className="no-width text-center">
-                <OverlayTrigger overlay={<Tooltip>Views</Tooltip>}>
-                  <i className="fa-solid fa-eye"></i>
-                </OverlayTrigger>
-              </th>
               <th className="no-width">Anmeldelser</th>
               <th className="no-width"></th>
             </tr>
           </thead>
           <tbody>
             {products && products?.map((product : IProduct, index) => {
-              const uploadDate = new Date(product.Timestamp.Upload as string);
+              const uploadDate = new Date(product.Timestamp.Upload);
               const uploadTime = (
                 "0" + uploadDate.getDate()).slice(-2) + "-" + ("0"+(uploadDate.getMonth()+1)).slice(-2) + "-" + uploadDate.getFullYear() + " " + 
                 ("0" + uploadDate.getHours()).slice(-2) + ":" + ("0" + uploadDate.getMinutes()).slice(-2);
-
+              
+              const starRating = product.Meta?.Ratings ? product.Meta?.Ratings.Stars : 0;
               return (
               <tr key={index}>
                 <td><Badge bg="secondary">{product.Type}</Badge></td>
@@ -107,15 +108,13 @@ function ProductsView(){
                     <Badge bg="success">Y</Badge>
                   </OverlayTrigger>
                 </td>
-                <td className="text-center">0</td>
-                <td className="text-center">0</td>
+                <td className="text-center">{product.Meta?.Views}</td>
+                <td className="text-center">{product.Meta?.Downloads}</td>
                 <td className="text-center">0</td>
                 <td className="text-nowrap">
-                  <i className="fa-solid fa-star"></i>{' '}
-                  <i className="fa-solid fa-star"></i>{' '}
-                  <i className="fa-solid fa-star"></i>{' '}
-                  <i className="fa-solid fa-star"></i>{' '}
-                  <i className="fa-solid fa-star"></i> - 5.231
+                  {[...Array(5)].map((x, i) => 
+                    <><i key={i} className={starRating > i ? (starRating > i + 0.50 ? 'fa-solid fa-star' : 'fa-regular fa-star-half-stroke') : 'fa-regular fa-star'}></i>{' '}</>
+                  )} - {starRating.toFixed(2)}
                 </td>
                 <td className="text-center">
                   {/* @ts-ignore */}
@@ -125,6 +124,7 @@ function ProductsView(){
             )})}
           </tbody>
         </Table>
+        {!products && <Loading />}
       </InfiniteScroll>
     </Container>
   );
