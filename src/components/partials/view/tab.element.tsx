@@ -93,10 +93,10 @@ function TabElement(args : { Product: IProduct }) {
       <Tab eventKey="overview" title="Overview">
         {args.Product.Description}
       </Tab>
-      <Tab eventKey="changelogs" title="Changelogs">
+      <Tab eventKey="changelogs" title={`Changelogs (0)`}>
         {!changelogLoaded && <Loading className="mt-5" />}
       </Tab>
-      <Tab eventKey="ratings" title="Ratings">
+      <Tab eventKey="ratings" title={`Ratings (${args.Product.Meta?.Ratings.Total})`}>
         {ratingError && (<>
           <Alert variant="danger" onClose={() => setRatingError("")} dismissible>
             {ratingError}
@@ -119,26 +119,29 @@ function TabElement(args : { Product: IProduct }) {
             "0" + uploadDate.getDate()).slice(-2) + "-" + ("0"+(uploadDate.getMonth()+1)).slice(-2) + "-" + uploadDate.getFullYear() + " " + 
             ("0" + uploadDate.getHours()).slice(-2) + ":" + ("0" + uploadDate.getMinutes()).slice(-2);
 
-          return (<blockquote className="blockquote" key={index}>
-            <span className="float-right h6">
-              {[...Array(5)].map((x, i) => 
-                <><i key={i} className={rating.Rating > i ? (rating.Rating > i + 0.50 ? 'fa-solid fa-star' : 'fa-regular fa-star-half-stroke') : 'fa-regular fa-star'}></i>{' '}</>
-              )}
-            </span>
-            <p className="overflow-hidden">
-              {rating.Comment}
-            </p>
-            <footer className="blockquote-footer comments-footer">
-              Skrevet af:{' '}
-              <Link className="text-decoration-none"  to="/">
-                <cite className="bold">User</cite>
-              </Link> den {' '}
-              <cite className="bold">{uploadTime}</cite>
-            </footer>
-          </blockquote>
-        )})}
+          return (
+            <blockquote className="blockquote" key={index}>
+              <span className="float-right h6">
+                {[...Array(5)].map((x, i) => 
+                  <span key={i}><i className={rating.Rating > i ? (rating.Rating > i + 0.50 ? 'fa-solid fa-star' : 'fa-regular fa-star-half-stroke') : 'fa-regular fa-star'}></i>{' '}</span>
+                )}
+              </span>
+              <p className="overflow-hidden">
+                {rating.Comment}
+              </p>
+              <footer className="blockquote-footer comments-footer">
+                Skrevet af:{' '}
+                <Link className="text-decoration-none"  to="/">
+                  <cite className="bold">User</cite>
+                </Link> den {' '}
+                <cite className="bold">{uploadTime}</cite>
+              </footer>
+            </blockquote>
+          )
+        })}
+        {ratings?.length == 0 && <p className="text-center">There are no comments, be the first to write one</p>}
       </Tab>
-      <Tab eventKey="discussion" title="Discussion">
+      <Tab eventKey="discussion" title={`Discussion (0)`}>
         {!discussionLoaded && <Loading className="mt-5" />}
       </Tab>
     </Tabs>
