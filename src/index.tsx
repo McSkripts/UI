@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
+import './index.style.css';
+
 import { AuthProviderFunc, AuthContext, useAuth } from "./methods/auth";
 
 import Navbar from './components/partials/navbar/navbar.view';
@@ -96,6 +98,7 @@ function App(){
           <Route path="/search/:type/:query/:page" element={<Search />} />
 
           <Route path="/view/:id" element={<View />} />
+          <Route path="/view/:id/:seo" element={<View />} />
           {/*<Route path="/search/:type/:page(\d+)" element={<div>TYPE/PAGE</div>} />
           <Route path="/search/:type/:query(/[a-zA-Z0-9-_]+/g)?" element={<div>TYPE/QUERY/PAGE</div>} />
           <Route path="/search/:type/:query/:page" element={<div>TYPE/QUERY/PAGE</div>} />*/}
