@@ -113,7 +113,7 @@ function ProductsView(){
                 <td className="text-center">0</td>
                 <td className="text-nowrap">
                   {[...Array(5)].map((x, i) => 
-                    <><i key={i} className={starRating > i ? (starRating > i + 0.50 ? 'fa-solid fa-star' : 'fa-regular fa-star-half-stroke') : 'fa-regular fa-star'}></i>{' '}</>
+                    <span key={i}><i className={starRating > i ? (starRating > i + 0.50 ? 'fa-solid fa-star' : 'fa-regular fa-star-half-stroke') : 'fa-regular fa-star'}></i>{' '}</span>
                   )} - {starRating.toFixed(2)}
                 </td>
                 <td className="text-center">
