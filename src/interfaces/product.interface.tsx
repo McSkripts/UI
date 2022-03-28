@@ -1,3 +1,5 @@
+import User from './user.interface';
+
 export default interface Product {
   Id: number;
   Type: string;
@@ -16,6 +18,7 @@ export default interface Product {
     Update: string;
   };
   Uri?: string;
+  User?: User;
   Meta?: {
     Views: number;
     Downloads: number;
