@@ -47,7 +47,7 @@ function IndexView() {
           </Form.Select>
           <FormControl {...register("query")} placeholder="keywords..." />
         </InputGroup>
-        <Button type="submit" variant="primary">Søg</Button>
+        <Button type="submit" variant="primary">Search</Button>
       </form>
       <Products Products={products?.Products} />
     </Container>

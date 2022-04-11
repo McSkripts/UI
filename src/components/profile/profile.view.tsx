@@ -10,7 +10,6 @@ import Achivements from '../partials/profile/achievements/achievements.view';
 
 function ProfileView(){
   let auth = useAuth();
-
   let userObj = JSON.parse(auth.user);
 
   return (
@@ -89,7 +88,7 @@ function ProfileView(){
             <Col lg={{ span: 6 }}>
               <Card border="info">
                 <Card.Header>Achievements</Card.Header>
-                <Card.Body className="">
+                <Card.Body className="p-1">
                   <Achivements />
                 </Card.Body>
               </Card>
