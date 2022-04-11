@@ -94,8 +94,7 @@ function App(){
           
           <Route path="/search" element={<SearchTypes />} />
           <Route path="/search/:type" element={<Search />} />
-          <Route path="/search/:type/:page" element={<Search />} />
-          <Route path="/search/:type/:query/:page" element={<Search />} />
+          <Route path="/search/:type/:query" element={<Search />} />
 
           <Route path="/view/:id" element={<View />} />
           <Route path="/view/:id/:seo" element={<View />} />
@@ -104,7 +103,6 @@ function App(){
           <Route path="/search/:type/:query/:page" element={<div>TYPE/QUERY/PAGE</div>} />*/}
 
           <Route path="/members" element={<Members />} />
-          <Route path="/members/:page" element={<Members />} />
 
           <Route
             path="/profile"
