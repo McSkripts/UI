@@ -1,4 +1,5 @@
 import User from './user.interface';
+import Transaction from './transaction.interface';
 
 export default interface Product {
   Id: number;
@@ -13,6 +14,7 @@ export default interface Product {
     Amount: number;
     Currency: string;
   };
+  Transaction?: Transaction;
   Timestamp: {
     Upload: string;
     Update: string;
