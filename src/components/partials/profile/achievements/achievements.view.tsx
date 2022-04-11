@@ -20,7 +20,7 @@ function AchievementsView(){
   }, []);
 
   if(!achievements)
-    return <Loading />;
+    return <Loading className="m-2" />;
   
   return (
     <div>
