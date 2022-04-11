@@ -6,12 +6,17 @@ import Loading from '../partials/loading.element';
 import axios from 'axios';
 import './view.style.css';
 
+import { useAuth } from "../../methods/auth";
+
 import Script from './script.view';
 import Plugin from './plugin.view';
 
 import IProduct from '../../interfaces/product.interface';
 
 function RootView() {
+  let auth = useAuth();
+  let tokenObj = JSON.parse(auth.token);
+
   const watchtime_start = new Date();
   let watchtime_timer: NodeJS.Timer,
    watchtime_focus: boolean = true,
@@ -20,7 +25,11 @@ function RootView() {
   let params = useParams();
   const [product, setProduct] = useState<IProduct | undefined>();
   useEffect(() => {
-    axios.get(`http://localhost/product/${params.id}`).then((res) => {
+    axios.get(`http://localhost/product/${params.id}`, tokenObj.Token ? {
+      headers: {
+        Authorization: `Bearer ${tokenObj.Token}` 
+      }
+    } : undefined).then((res) => {
       setProduct(res.data);
       
       document.title = res.data.Title + ' - McSkripts';
