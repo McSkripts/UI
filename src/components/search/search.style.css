@@ -2,6 +2,15 @@
   float: right !important;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.custom-accordion-button {
+  border: 0;
+  background-color: transparent;
+}
+
 @media (max-width: 767px) {
   .hide-small-screen {
     display: none;
