@@ -1,4 +1,5 @@
 import { Container, Alert, Form, Row, Col, Modal, InputGroup, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
@@ -12,6 +13,7 @@ import axios from "axios";
 function PreviewProductView(){
   let auth = useAuth();
   let tokenObj = JSON.parse(auth.token);
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,8 +39,8 @@ function PreviewProductView(){
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }
-    }).then(() => {
-
+    }).then(res => {
+      navigate(`/profile/product/${res.data.Id}`);
     }).catch(err => {
       setLoading(false)
       
