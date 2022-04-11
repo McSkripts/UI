@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Row, Col, Badge, Button } from 'react-bootstrap';
+import { ThreeDots } from 'react-loading-icons';
 import Loading from '../../loading.element';
 import axios from 'axios';
 
@@ -15,6 +16,7 @@ function DailyRewardsView(){
 
   const [dailyReward, setDailyReward] = useState<IDailyReward | null>(null);
   const [badgeText, setBadgeText] = useState<string>("You'r daily reward is ready");
+  const [loading, setLoading] = useState(false);
 
   const startCountDown = (reward: IDailyReward) => {
     if(reward.Collected){
@@ -67,11 +69,13 @@ function DailyRewardsView(){
 
   const collectReward = () => {
     if(!isCollected){
+      setLoading(true);
       axios.put(`http://localhost/user/@me/dailyreward`, undefined, {
         headers: {
           Authorization: `Bearer ${tokenObj.Token}` 
         }
       }).then((res) => {
+        setLoading(false);
         setDailyReward(res.data);
       
         startCountDown(res.data);
@@ -96,7 +100,7 @@ function DailyRewardsView(){
   }, []);
 
   if(!dailyReward)
-    return <Loading />;
+    return <Loading className="m-2" />;
 
   const isCollected = dailyReward ? dailyReward.Collected : false;
   return (
@@ -112,7 +116,7 @@ function DailyRewardsView(){
       </Col>
       <Col className="p-1" sm={{ span: 3 }}>
         <div className="d-grid gap-2 h-100">
-          <Button variant="danger" onClick={collectReward} disabled={isCollected}>Collect</Button>
+          <Button variant="danger" onClick={collectReward} disabled={loading || isCollected}>{loading ? <ThreeDots fill="#fff" width="2rem" /> : 'Submit'}</Button>
         </div>
       </Col>
     </Row>
