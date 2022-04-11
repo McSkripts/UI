@@ -28,7 +28,7 @@ function ScriptView(args : { Product: IProduct }) {
         <Tab Product={args.Product} />
       </Col>
       <Col lg={{ span: 2 }}>
-        <ActionButton Id={args.Product.Id} Price={args.Product.Price} />
+        <ActionButton Product={args.Product} />
         <div className="rect-img-container">
           <img className="rect-img" src={`https://mcskri.pt${args.Product.User?.Avatar.File.Location}${args.Product.User?.Avatar.File.Name}.${args.Product.User?.Avatar.File.Type}`} />
         </div>
