@@ -8,5 +8,6 @@ export default interface IRating {
     Upload: string;
     Update: string;
   }
+  HasReplies?: boolean;
   User?: User;
 }
