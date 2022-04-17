@@ -1,0 +1,21 @@
+.member-banner {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 550px;
+  height: 130px;
+  background-color: #eee;
+}
+
+.member-avatar {
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -40px;
+  width: 125px;
+  height: 125px;
+}
+
+.member-avatar > img {
+  border-radius: 50%;
+  box-shadow: 0px 2px 20px rgb(0 0 0 / 47%);
+  object-fit: cover;
+}
