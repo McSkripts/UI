@@ -1,0 +1,31 @@
+blockquote > .comment-manage {
+  font-size: 0.75rem;
+}
+
+blockquote > .comment-manage > button {
+  text-decoration: none;
+  padding: 0 0.25rem;
+}
+
+blockquote > .comment-manage > button > i {
+  font-size: 75%;
+}
+
+blockquote > .comment-footer {
+  margin-bottom: -2px !important;
+}
+
+.youtube-box {
+  position: relative;
+  margin-bottom: -15px;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+iframe.youtube {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
