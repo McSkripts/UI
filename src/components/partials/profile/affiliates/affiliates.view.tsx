@@ -10,7 +10,7 @@ function AffiliatesView(){
 
   const [affiliates, setAffiliates] = useState(null);
   useEffect(() => {
-    /*axios.get(`http://localhost/user/@me/affiliates`, {
+    /*axios.get(`https://b01api.mcskri.pt/user/@me/affiliates`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

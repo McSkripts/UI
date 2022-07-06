@@ -17,7 +17,7 @@ function MembersView() {
   useEffect(() => {
     document.title = 'McSkripts - 1000 forskellige scripts';
 
-    axios.get('http://localhost/users').then((res) => {
+    axios.get('https://b01api.mcskri.pt/users').then((res) => {
       setMembers(res.data);
     });
   }, []);

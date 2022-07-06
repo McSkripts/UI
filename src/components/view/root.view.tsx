@@ -25,7 +25,7 @@ function RootView() {
   let params = useParams();
   const [product, setProduct] = useState<IProduct | undefined>();
   useEffect(() => {
-    axios.get(`http://localhost/product/${params.id}`, tokenObj.Token ? {
+    axios.get(`https://b01api.mcskri.pt/product/${params.id}`, tokenObj.Token ? {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

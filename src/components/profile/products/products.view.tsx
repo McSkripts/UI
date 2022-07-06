@@ -17,7 +17,7 @@ function ProductsView(){
   const [products, setProducts] = useState<Array<IProduct> | undefined>(undefined);
   const [hasMore, setHasMore] = useState<boolean>(false);
   useEffect(() => {
-    axios.get(`http://localhost/user/@me/products`, {
+    axios.get(`https://b01api.mcskri.pt/user/@me/products`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }
@@ -31,7 +31,7 @@ function ProductsView(){
 
   const fetchMore = () => {
     let nextPage = Math.ceil((products?.length || 0) / 25) + 1;
-    axios.get(`http://localhost/user/@me/products?page=${nextPage}`, {
+    axios.get(`https://b01api.mcskri.pt/user/@me/products?page=${nextPage}`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

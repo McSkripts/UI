@@ -28,7 +28,7 @@ function TabElement(args : { Product: IProduct }) {
     switch(key) { 
       case 'changelogs': { 
         if(!changelogs){
-          axios.get(`http://localhost/product/${args.Product.Id}/changelogs`, tokenObj.Token ? {
+          axios.get(`https://b01api.mcskri.pt/product/${args.Product.Id}/changelogs`, tokenObj.Token ? {
             headers: {
               Authorization: `Bearer ${tokenObj.Token}` 
             }
@@ -40,7 +40,7 @@ function TabElement(args : { Product: IProduct }) {
       }
       case 'ratings': { 
         if(!ratings){
-          axios.get(`http://localhost/product/${args.Product.Id}/ratings`, tokenObj.Token ? {
+          axios.get(`https://b01api.mcskri.pt/product/${args.Product.Id}/ratings`, tokenObj.Token ? {
             headers: {
               Authorization: `Bearer ${tokenObj.Token}` 
             }
@@ -63,7 +63,7 @@ function TabElement(args : { Product: IProduct }) {
 
   const downloadProduct = () => {
     axios({
-      url: `http://localhost/product/${args.Product.Id}/download`,
+      url: `https://b01api.mcskri.pt/product/${args.Product.Id}/download`,
       method: "GET",
       responseType: "blob",
       headers: {

@@ -16,7 +16,7 @@ function PreviewProductView(){
 
   const [product, setProduct] = useState<IProduct | undefined>(undefined);
   useEffect(() => {
-    axios.get(`http://localhost/product/${params.id}`, {
+    axios.get(`https://b01api.mcskri.pt/product/${params.id}`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

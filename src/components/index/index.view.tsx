@@ -18,7 +18,7 @@ function IndexView() {
   useEffect(() => {
     document.title = 'McSkripts - 1000 forskellige scripts';
 
-    axios.get('http://localhost/auction/products').then((res) => {
+    axios.get('https://b01api.mcskri.pt/auction/products').then((res) => {
       setProducts(res.data);
     });
   }, []);

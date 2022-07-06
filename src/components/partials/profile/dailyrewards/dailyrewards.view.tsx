@@ -15,7 +15,7 @@ function DailyRewardsView(){
   let tokenObj = JSON.parse(auth.token);
 
   const [dailyReward, setDailyReward] = useState<IDailyReward | null>(null);
-  const [badgeText, setBadgeText] = useState<string>("You'r daily reward is ready");
+  const [badgeText, setBadgeText] = useState<string>("Your daily reward is ready");
   const [loading, setLoading] = useState(false);
 
   const startCountDown = (reward: IDailyReward) => {
@@ -51,12 +51,12 @@ function DailyRewardsView(){
           clearInterval(interval);
           
           setTimeout(() => {
-            axios.get(`http://localhost/user/@me/dailyreward`, {
+            axios.get(`https://b01api.mcskri.pt/user/@me/dailyreward`, {
               headers: {
                 Authorization: `Bearer ${tokenObj.Token}` 
               }
             }).then((res) => {
-              setBadgeText("You'r daily reward is ready");
+              setBadgeText("Your daily reward is ready");
               setDailyReward(res.data);
             });
           }, 1000);
@@ -70,7 +70,7 @@ function DailyRewardsView(){
   const collectReward = () => {
     if(!isCollected){
       setLoading(true);
-      axios.put(`http://localhost/user/@me/dailyreward`, undefined, {
+      axios.put(`https://b01api.mcskri.pt/user/@me/dailyreward`, undefined, {
         headers: {
           Authorization: `Bearer ${tokenObj.Token}` 
         }
@@ -84,7 +84,7 @@ function DailyRewardsView(){
   }
 
   useEffect(() => {
-    axios.get(`http://localhost/user/@me/dailyreward`, {
+    axios.get(`https://b01api.mcskri.pt/user/@me/dailyreward`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

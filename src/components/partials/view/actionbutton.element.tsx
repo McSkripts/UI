@@ -19,7 +19,7 @@ function ActionButton(args : { Product: IProduct }) {
 
   const downloadProduct = () => {
     axios({
-      url: `http://localhost/product/${args.Product.Id}/download`,
+      url: `https://b01api.mcskri.pt/product/${args.Product.Id}/download`,
       method: "GET",
       responseType: "blob",
       headers: {
@@ -36,7 +36,7 @@ function ActionButton(args : { Product: IProduct }) {
   const purchaseProduct = () => {
     setPurchaseLoading(true);
     
-    axios.post(`http://localhost/product/${args.Product.Id}/purchase`, {}, {
+    axios.post(`https://b01api.mcskri.pt/product/${args.Product.Id}/purchase`, {}, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

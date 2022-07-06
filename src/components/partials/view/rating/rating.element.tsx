@@ -19,7 +19,7 @@ function RatingElement(args : { Rating : IRating }) {
   const [ratingReplies, setRatingReplies] = useState<IRatingReply[] | undefined>(undefined);
   useEffect(() => {
     if(args.Rating.HasReplies){
-      axios.get(`http://localhost/rating/${args.Rating.Id}/replies`, tokenObj.Token ? {
+      axios.get(`https://b01api.mcskri.pt/rating/${args.Rating.Id}/replies`, tokenObj.Token ? {
         headers: {
           Authorization: `Bearer ${tokenObj.Token}` 
         }

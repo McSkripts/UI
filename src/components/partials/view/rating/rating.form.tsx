@@ -27,7 +27,7 @@ function RatingForm(args : { Product : IProduct, Ratings : IRating[] | undefined
     formData.append('rating', (rating / 20).toString());
     formData.append('comment', ratingComment);
 
-    axios.post(`http://localhost/product/${args.Product.Id}/ratings`, formData, {
+    axios.post(`https://b01api.mcskri.pt/product/${args.Product.Id}/ratings`, formData, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

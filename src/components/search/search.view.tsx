@@ -30,22 +30,37 @@ function SearchView() {
 
   const queryStr = params.query || '';
   const [query, setQuery] = useState<string>(queryStr);
-  useEffect(() => {
-    document.title = 'McSkripts - 1000 forskellige scripts';
 
-    axios.get(`http://localhost/products/${params.type}?searchterm=${query}`).then((res) => {
+  const loadProducts = () => {
+    axios.get(`https://b01api.mcskri.pt/products/${params.type}?searchterm=${query}`).then((res) => {
       setProducts(res.data.Products);
+
+      console.log('Query time:', (res.data.Meta.Performance.Duration / 1000).toFixed(3), 'seconds');
 
       if(res.data.Meta.Pagination.TotalPages > res.data.Meta.Pagination.CurrentPage)
         setHasMore(true);
     });
+  }
+
+  useEffect(() => {
+    document.title = `McSkripts - Find all the ${params.type} you could ever need`;
+
+    loadProducts();
   }, []);
+
+  useEffect(() => {
+    document.title = `McSkripts - Find all the ${params.type} you could ever need`;
+
+    loadProducts();
+  }, [location]);
 
   const fetchMore = () => {
     let nextPage = Math.ceil((products?.length || 0) / 25) + 1;
-    axios.get(`http://localhost/products/${params.type}?page=${nextPage}&searchterm=${query}`).then((res) => {
+    axios.get(`https://b01api.mcskri.pt/products/${params.type}?page=${nextPage}&searchterm=${query}`).then((res) => {
       let tempArr = products?.concat(res.data.Products);
       setProducts(tempArr);
+
+      console.log('Query time:', (res.data.Meta.Performance.Duration / 1000).toFixed(3), 'seconds');
 
       if(res.data.Meta.Pagination.TotalPages == res.data.Meta.Pagination.CurrentPage)
         setHasMore(false);
@@ -58,12 +73,8 @@ function SearchView() {
     navigate(query ? `/search/${params.type}/${encodeURIComponent(query)}#${sortingVal}::${directionVal}` : `/search/${params.type}#${sortingVal}::${directionVal}`);
 
     setHasMore(false);
-    axios.get(`http://localhost/products/${params.type}?searchterm=${query}`).then((res) => {
-      setProducts(res.data.Products);
-
-      if(res.data.Meta.Pagination.TotalPages > res.data.Meta.Pagination.CurrentPage)
-        setHasMore(true);
-    });
+    
+    loadProducts();
   }
 
   const sortingClicked = (e: React.MouseEvent<Element, MouseEvent>) => {

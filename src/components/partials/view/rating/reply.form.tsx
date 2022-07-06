@@ -36,7 +36,7 @@ function RatingReplyForm(args : { Rating: IRating, Replies : IRatingReply[] | un
 
     formData.append('reply', replyText);
 
-    axios.post(`http://localhost/rating/${args.Rating.Id}/replies`, formData, {
+    axios.post(`https://b01api.mcskri.pt/rating/${args.Rating.Id}/replies`, formData, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }

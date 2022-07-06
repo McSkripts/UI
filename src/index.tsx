@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +16,7 @@ import Footer from './components/partials/footer/footer.view';
 
 import Index from './components/index/index.view';
 import SignIn from './components/signin/signin.view';
+import SignUp from './components/signup/signup.view';
 
 import SearchTypes from './components/search/types.view';
 import Search from './components/search/search.view';
@@ -32,10 +34,10 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   let [token, setToken] = React.useState<any>(localStorage.getItem('token') || "{}");
   let [user, setUser] = React.useState<any>(localStorage.getItem('user') || "{}");
 
-  let signin = async (email: string, password: string) => {
+  let signin = async (token: string, email: string, password: string) => {
     return new Promise<void>((resolve, reject) => {
-      AuthProviderFunc.signin(email, password).then(tokenRes => {
-        axios.get('http://localhost/user/@me', {
+      AuthProviderFunc.signin(token, email, password).then(tokenRes => {
+        axios.get('https://b01api.mcskri.pt/user/@me', {
           headers: {
             Authorization: `Bearer ${tokenRes.data.Token}` 
           }
@@ -47,11 +49,30 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
           localStorage.setItem('user', JSON.stringify(userRes.data));
 
           resolve();
-        })
-        .catch(err => reject(err.response.data))
+        }).catch(err => reject(err.response.data))
       }).catch(err => reject(err.response.data));
     });
   };
+
+  let signup = (token: string, firstname: string, lastname: string, displayname: string, email: string, password: string, repeatPassword: string, currency: string, language: string) => {
+    return new Promise<void>((resolve, reject) => {
+      AuthProviderFunc.signup(token, firstname, lastname, displayname, email, password, repeatPassword, currency, language).then(tokenRes => {
+        axios.get('https://b01api.mcskri.pt/user/@me', {
+          headers: {
+            Authorization: `Bearer ${tokenRes.data.Token}` 
+          }
+        }).then(userRes => {
+          setToken(JSON.stringify(tokenRes.data));
+          localStorage.setItem('token', JSON.stringify(tokenRes.data));
+
+          setUser(JSON.stringify(userRes.data));
+          localStorage.setItem('user', JSON.stringify(userRes.data));
+
+          resolve();
+        }).catch(err => reject(err.response.data))
+      }).catch(err => reject(err.response.data));
+    });
+  }
 
   let signout = (callback: VoidFunction) => {
     return AuthProviderFunc.signout(() => {
@@ -63,7 +84,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  let value = { token, user, signin, signout };
+  let value = { token, user, signin, signup, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
@@ -82,6 +103,8 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 }
 
 function App(){
+  const captchaKey = "6Lc9gFcaAAAAANYKT_VSjXaeo39GYHgBhtGcexz-";
+
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -89,8 +112,8 @@ function App(){
         <Breadcrumbs/>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<div>Page</div>} />
+          <Route path="/signin" element={<GoogleReCaptchaProvider reCaptchaKey={captchaKey}><SignIn /></GoogleReCaptchaProvider>} />
+          <Route path="/signup" element={<GoogleReCaptchaProvider reCaptchaKey={captchaKey}><SignUp /></GoogleReCaptchaProvider>} />
           
           <Route path="/search" element={<SearchTypes />} />
           <Route path="/search/:type" element={<Search />} />

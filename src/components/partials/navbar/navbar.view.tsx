@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../methods/auth";
 import './navbar.style.css';
@@ -7,6 +7,8 @@ import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import lang from '../../../methods/language.js';
 
 function NavBarView() {
+  const [show, setShow] = useState<boolean>(false);
+
   let auth = useAuth();
   let navigate = useNavigate();
 
@@ -28,11 +30,14 @@ function NavBarView() {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/search">{lang.navbar.search}</Nav.Link>
+            <NavDropdown show={show} onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)} {... {"title": lang.navbar.search} } id="search-dropdown" className="nav-hover" renderMenuOnMount={true}>
+              <NavDropdown.Item as={Link} to="/search/scripts">Scripts</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/search/plugins">Plugins</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to="/members">{lang.navbar.members}</Nav.Link>
           </Nav>
           <Nav>
-            <NavDropdown {... {"title": !tokenObj.Token ? lang.navbar.dropdown.account : `${lang.navbar.dropdown.user}, ${userObj.FirstName}`}} id="nav-dropdown">
+            <NavDropdown {... {"title": !tokenObj.Token ? lang.navbar.dropdown.account : `${lang.navbar.dropdown.user}, ${userObj.FirstName}`} } id="nav-dropdown">
             {!tokenObj.Token ? (
               <>
                 <NavDropdown.Item as={Link} to="/signin">{lang.navbar.dropdown.signin}</NavDropdown.Item>

@@ -10,7 +10,7 @@ function AchievementsView(){
 
   const [achievements, setAchievements] = useState(null);
   useEffect(() => {
-    axios.get(`http://localhost/user/@me/achievements`, {
+    axios.get(`https://b01api.mcskri.pt/user/@me/achievements`, {
       headers: {
         Authorization: `Bearer ${tokenObj.Token}` 
       }
